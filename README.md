@@ -17,6 +17,10 @@ Componentes del proyecto:
 
 pip install flask pandas scikit-learn
 
+O
+
+pip install flask pandas scikit-learn matplotlib
+
 python backend/app.py
 
 http://127.0.0.1:5000
