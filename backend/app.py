@@ -6,7 +6,7 @@ from sklearn.linear_model import LinearRegression
 app = Flask(__name__)
 
 # Cargar datos
-data = pd.read_csv("../dataset/consumo_energetico.csv")
+data = pd.read_csv("dataset/consumo_energetico.csv")
 
 # Estadísticas
 consumo_promedio = round(data["consumo_kwh"].mean(),2)
