@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+
+<title>EcoVida Sistema</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<h1>Sistema EcoVida</h1>
+
+<h2>Estadísticas de Consumo</h2>
+
+<p>Consumo promedio: {{ promedio }} kWh</p>
+<p>Consumo máximo: {{ maximo }} kWh</p>
+<p>Consumo mínimo: {{ minimo }} kWh</p>
+
+<h2>Predicción IA</h2>
+
+<p>Consumo estimado futuro: {{ prediccion }} kWh</p>
+
+<h2>Alertas de consumo</h2>
+
+<ul>
+
+{% for alerta in alertas %}
+<li>⚠ Consumo alto detectado: {{ alerta }} kWh</li>
+{% endfor %}
+
+</ul>
+
+</body>
+
+</html>
