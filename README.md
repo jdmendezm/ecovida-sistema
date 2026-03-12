@@ -9,3 +9,13 @@ Componentes del proyecto:
 - Modelo predictivo
 - Dashboard de monitoreo
 - Gestión de incidentes
+
+
+1. Clonar repositorio
+2. Instalar dependencias
+3. Ejecutar sistema
+
+pip install flask pandas scikit-learn
+python backend/app.py
+
+http://127.0.0.1:5000
