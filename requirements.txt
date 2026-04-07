@@ -1,0 +1,14 @@
+flask
+flask-sqlalchemy
+flask-login
+flask-bcrypt
+pandas
+numpy
+scikit-learn
+<<<<<<< HEAD
+gunicorn
+psycopg2-binary
+python-dotenv
+=======
+>>>>>>> 006627f3f467490a9c67d9eaf0e27da417467c19
+gunicorn

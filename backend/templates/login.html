@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EcoVida | Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .login-card { max-width: 400px; margin: 100px auto; padding: 40px; text-align: center; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; }
+        button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="card login-card">
+        <h2>Iniciar Sesión</h2>
+<<<<<<< HEAD
+
+        <form method="POST">
+
+            <input type="email" name="correo" placeholder="Correo de la Empresa" required>
+
+            <input type="password" name="password" placeholder="Contraseña" required>
+
+            <button type="submit">
+                Entrar al Sistema
+            </button>
+
+        </form>
+
+        <p style="margin-top:20px">
+            ¿No tienes cuenta?
+            <a href="/register" style="color:#22c55e">
+                Regístrate
+            </a>
+        </p>
+
+=======
+        <form method="POST">
+            <input type="email" name="email" placeholder="Correo de la Empresa" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Entrar al Sistema</button>
+        </form>
+        <p style="margin-top:20px">¿No tienes cuenta? <a href="/register" style="color:#22c55e">Regístrate</a></p>
+>>>>>>> 006627f3f467490a9c67d9eaf0e27da417467c19
+    </div>
+</body>
+</html>

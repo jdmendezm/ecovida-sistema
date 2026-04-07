@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EcoVida | Registro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .auth-container { max-width: 400px; margin: 80px auto; padding: 30px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #1e293b; background: #0f172a; color: white; }
+        .btn-auth { width: 100%; padding: 12px; background: #22c55e; border: none; border-radius: 8px; color: white; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="card auth-container">
+        <h2 style="text-align: center;">Registro de Empresa</h2>
+        <form method="POST">
+<<<<<<< HEAD
+            <input type="text" name="nombre" placeholder="Nombre de la Empresa" required>
+            <input type="email" name="correo" placeholder="Correo Electrónico" required>
+=======
+            <input type="text" name="empresa" placeholder="Nombre de la Empresa" required>
+            <input type="email" name="email" placeholder="Correo Electrónico" required>
+>>>>>>> 006627f3f467490a9c67d9eaf0e27da417467c19
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit" class="btn-auth">Crear Cuenta</button>
+        </form>
+        <p style="text-align: center; margin-top: 15px;">¿Ya tienes cuenta? <a href="/login" style="color: #2563eb;">Inicia sesión</a></p>
+    </div>
+</body>
+</html>

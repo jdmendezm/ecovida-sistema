@@ -1,0 +1,65 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOi2zuZ5F9UfWqnfQo++Kw3",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/jdmendezm/ecovida-sistema/blob/main/analisis_consumo\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "Cs8erEpHK3Ug"
+      },
+      "outputs": [],
+      "source": [
+        "import pandas as pd\n",
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "data = pd.read_csv(\"consumo_energetico.csv\")\n",
+        "\n",
+        "print(data)\n",
+        "\n",
+        "plt.plot(data[\"consumo_kwh\"])\n",
+        "plt.title(\"Consumo energético\")\n",
+        "plt.xlabel(\"Día\")\n",
+        "plt.ylabel(\"kWh\")\n",
+        "plt.show()\n",
+        "\n",
+        "from sklearn.linear_model import LinearRegression\n",
+        "import numpy as np\n",
+        "\n",
+        "X = np.array(range(len(data))).reshape(-1,1)\n",
+        "y = data[\"consumo_kwh\"]\n",
+        "\n",
+        "modelo = LinearRegression()\n",
+        "modelo.fit(X,y)\n",
+        "\n",
+        "prediccion = modelo.predict([[12]])\n",
+        "\n",
+        "print(\"Consumo estimado futuro:\", prediccion)"
+      ]
+    }
+  ]
+}

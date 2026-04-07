@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>EcoVida | Configuración</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <div class="sidebar">
+
+        <h2>EcoVida</h2>
+
+        <div class="menu">
+
+            <a href="/">
+                <div class="menu-item">
+                    Dashboard
+                </div>
+            </a>
+
+            <a href="/listar_reportes">
+                <div class="menu-item">
+                    Reportes
+                </div>
+            </a>
+
+            <a href="/listar_sensores">
+                <div class="menu-item">
+                    Sensores
+                </div>
+            </a>
+
+            <a href="/listar_alertas">
+                <div class="menu-item">
+                    Alertas
+                </div>
+            </a>
+
+            <a href="/listar_configuraciones">
+                <div class="menu-item active">
+                    Configuración
+                </div>
+            </a>
+
+            <a href="/listar_servicios">
+                <div class="menu-item">
+                    Servicios TI
+                </div>
+            </a>
+
+            <a href="/logout" style="color:#f87171;">
+                <div class="menu-item" style="margin-top:50px;">
+                    Cerrar Sesión
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="main">
+
+        <h1>Configuración del Sistema</h1>
+
+        <br>
+
+        <table>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Parámetro</th>
+                <th>Valor</th>
+                <th>Acciones</th>
+
+            </tr>
+
+            {% for c in configuraciones %}
+
+            <tr>
+
+                <td>{{ c.id }}</td>
+                <td>{{ c.parametro }}</td>
+                <td>{{ c.valor }}</td>
+
+                <td>
+
+                    <a href="/editar_configuracion/{{ c.id }}">
+                        Editar
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
