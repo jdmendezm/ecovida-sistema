@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<<<<<<< HEAD
+
+    <title>EcoVida | Energy Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+=======
+    <title>EcoVida | Energy Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+>>>>>>> 006627f3f467490a9c67d9eaf0e27da417467c19
+</head>
+
+<body>
+
+<<<<<<< HEAD
+<div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h2>EcoVida</h2>
+
+        <div class="menu">
+
+            <!-- DASHBOARD -->
+
+            <a href="/"
+               style="text-decoration: none;">
+
+                <div class="menu-item active">
+                    Dashboard
+                </div>
+
+            </a>
+
+            <!-- REPORTES -->
+
+            <a href="/listar_reportes"
+               style="text-decoration: none;">
+
+                <div class="menu-item">
+                    Reportes
+                </div>
+
+            </a>
+
+            <!-- SENSORES -->
+
+            <a href="/listar_sensores"
+               style="text-decoration: none;">
+
+                <div class="menu-item">
+                    Sensores
+                </div>
+
+            </a>
+
+            <!-- ALERTAS -->
+
+            <a href="/listar_alertas"
+               style="text-decoration: none;">
+
+                <div class="menu-item">
+                    Alertas
+                </div>
+
+            </a>
+
+            <!-- CONFIGURACIÓN -->
+
+            <a href="/listar_configuraciones"
+               style="text-decoration: none;">
+
+                <div class="menu-item">
+                    Configuración
+                </div>
+
+            </a>
+
+            <!-- SERVICIOS -->
+
+            <a href="/listar_servicios"
+               style="text-decoration: none;">
+
+                <div class="menu-item">
+                    Servicios TI
+                </div>
+
+            </a>
+
+            <!-- CERRAR SESIÓN -->
+
+            <a href="/logout"
+               style="
+               text-decoration: none;
+               color: #f87171;
+               ">
+
+                <div class="menu-item"
+                     style="margin-top: 50px;">
+
+                    Cerrar Sesión
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- CONTENIDO -->
+
+    <div class="main">
+
+        <!-- TOPBAR -->
+
+        <div class="topbar"
+             style="
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             ">
+
+            <h1>
+                Panel de Control: {{ empresa }}
+            </h1>
+
+            <span style="color: #22c55e;">
+                ● En línea
+            </span>
+
+        </div>
+
+        <!-- KPIs -->
+
+        <div class="kpi-grid">
+
+            <div class="kpi">
+
+                <h4>Consumo Promedio</h4>
+
+                <h2>
+                    {{ promedio }} kWh
+                </h2>
+
+            </div>
+
+            <div class="kpi">
+
+                <h4>Consumo Máximo</h4>
+
+                <h2>
+                    {{ maximo }} kWh
+                </h2>
+
+            </div>
+
+            <div class="kpi">
+
+                <h4>Consumo Mínimo</h4>
+
+                <h2>
+                    {{ minimo }} kWh
+                </h2>
+
+            </div>
+
+            <div class="kpi">
+
+                <h4>
+                    Predicción IA (Próx. Mes)
+                </h4>
+
+                <h2>
+                    {{ prediccion }} kWh
+                </h2>
+
+            </div>
+
+        </div>
+
+        <!-- DASHBOARD -->
+
+        <div class="dashboard-grid">
+
+            <!-- GRAFICA -->
+
+            <div class="card">
+
+                <h3>
+                    Historial de Consumo Energético
+                </h3>
+
+                <canvas id="graficaConsumo"></canvas>
+
+            </div>
+
+            <!-- ALERTAS -->
+
+            <div class="card">
+
+                <h3>
+                    Alertas del Sistema
+                </h3>
+
+                <div style="
+                    max-height: 300px;
+                    overflow-y: auto;
+                ">
+
+                    <ul style="
+                        list-style: none;
+                        padding: 0;
+                    ">
+
+                        {% if alertas %}
+
+                            {% for alerta in alertas %}
+
+                            <li style="
+                                background:
+                                rgba(248,113,113,0.1);
+                                padding: 10px;
+                                border-radius: 5px;
+                                margin-bottom: 8px;
+                                border-left:
+                                4px solid #f87171;
+                            ">
+
+                                ⚠
+
+                                <strong>
+                                    Alto consumo:
+                                </strong>
+
+                                {{ alerta }} kWh
+
+                            </li>
+
+                            {% endfor %}
+
+                        {% else %}
+
+                            <li style="
+                                color: #9ca3af;
+                                text-align: center;
+                                margin-top: 20px;
+                            ">
+
+                                No hay alertas pendientes.
+
+                            </li>
+
+                        {% endif %}
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- GRAFICA -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const consumo = {{ consumo | tojson }};
+
+const ctx =
+    document
+    .getElementById('graficaConsumo')
+    .getContext('2d');
+
+new Chart(ctx, {
+
+    type: 'line',
+
+    data: {
+
+        labels:
+            consumo.map(
+                (_, i) =>
+                "Lectura " + (i + 1)
+            ),
+
+        datasets: [
+
+            {
+
+                label:
+                    'Consumo (kWh)',
+
+                data:
+                    consumo,
+
+                borderColor:
+                    '#22c55e',
+
+                backgroundColor:
+                    'rgba(34,197,94,0.1)',
+
+                borderWidth:
+                    3,
+
+                fill:
+                    true,
+
+                tension:
+                    0.4,
+
+                pointRadius:
+                    5,
+
+                pointBackgroundColor:
+                    '#22c55e'
+
+            }
+
+        ]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        maintainAspectRatio: false
+
+    }
+
+});
+
+</script>
+
+</body>
+
+=======
+    <div class="layout">
+
+        <div class="sidebar">
+            <h2>EcoVida</h2>
+            <div class="menu">
+                <div class="menu-item active">Dashboard</div>
+                <div class="menu-item">Reportes</div>
+                <div class="menu-item">Sensores</div>
+                <div class="menu-item">Alertas</div>
+                <div class="menu-item">Configuración</div>
+                <a href="/logout" style="text-decoration: none; color: #f87171;">
+                    <div class="menu-item" style="margin-top: 50px;">Cerrar Sesión</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="main">
+
+            <div class="topbar" style="display: flex; justify-content: space-between; align-items: center;">
+                <h1>Panel de Control: {{ empresa }}</h1>
+                <span style="color: #22c55e;">● En línea</span>
+            </div>
+
+            <div class="kpi-grid">
+                <div class="kpi">
+                    <h4>Consumo Promedio</h4>
+                    <h2>{{ promedio }} kWh</h2>
+                </div>
+
+                <div class="kpi">
+                    <h4>Consumo Máximo</h4>
+                    <h2>{{ maximo }} kWh</h2>
+                </div>
+
+                <div class="kpi">
+                    <h4>Consumo Mínimo</h4>
+                    <h2>{{ minimo }} kWh</h2>
+                </div>
+
+                <div class="kpi">
+                    <h4>Predicción IA (Próx. Mes)</h4>
+                    <h2>{{ prediccion }} kWh</h2>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+
+                <div class="card">
+                    <h3>Historial de Consumo Energético</h3>
+                    <canvas id="graficaConsumo"></canvas>
+
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                    <script>
+                        // Datos traídos desde Flask
+                        const consumo = {{ consumo | tojson }};
+
+                        const ctx = document.getElementById('graficaConsumo').getContext('2d');
+
+                        new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: consumo.map((_, i) => "Lectura " + (i + 1)),
+                                datasets: [{
+                                    label: 'Consumo (kWh)',
+                                    data: consumo,
+                                    borderColor: '#22c55e',
+                                    backgroundColor: 'rgba(34,197,94,0.1)',
+                                    borderWidth: 3,
+                                    fill: true,
+                                    tension: 0.4,
+                                    pointRadius: 5,
+                                    pointBackgroundColor: '#22c55e'
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: {
+                                        labels: { color: "white", font: { size: 14 } }
+                                    }
+                                },
+                                scales: {
+                                    x: {
+                                        grid: { color: '#1e293b' },
+                                        ticks: { color: "white" }
+                                    },
+                                    y: {
+                                        grid: { color: '#1e293b' },
+                                        ticks: { color: "white" }
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+
+                <div class="card">
+                    <h3>Alertas del Sistema</h3>
+                    <div style="max-height: 300px; overflow-y: auto;">
+                        <ul style="list-style: none; padding: 0;">
+                            {% if alertas %}
+                                {% for alerta in alertas %}
+                                <li style="background: rgba(248, 113, 113, 0.1); padding: 10px; border-radius: 5px; margin-bottom: 8px; border-left: 4px solid #f87171;">
+                                    ⚠ <strong>Alto consumo:</strong> {{ alerta }} kWh
+                                </li>
+                                {% endfor %}
+                            {% else %}
+                                <li style="color: #9ca3af; text-align: center; margin-top: 20px;">
+                                    No hay alertas pendientes.
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div> </div> </div> </body>
+>>>>>>> 006627f3f467490a9c67d9eaf0e27da417467c19
+</html>

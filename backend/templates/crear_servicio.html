@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EcoVida | Crear Servicio TI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #1e293b;
+            background: #0f172a;
+            color: white;
+        }
+
+        textarea {
+            height: 120px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #22c55e;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card container">
+
+    <h2>Crear Servicio TI</h2>
+
+    <form method="POST">
+
+        <input 
+            type="text" 
+            name="nombre" 
+            placeholder="Nombre del servicio"
+            required
+        >
+
+        <textarea 
+            name="descripcion"
+            placeholder="Descripción del servicio"
+            required
+        ></textarea>
+
+        <select name="estado" required>
+            <option value="">Seleccione estado</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="En proceso">En proceso</option>
+            <option value="En mantenimiento">En mantenimiento</option>
+            <option value="Finalizado">Finalizado</option>
+        </select>
+
+        <!-- ESTE ES EL CAMPO QUE FALTABA -->
+
+        <select name="prioridad" required>
+            <option value="">Seleccione prioridad</option>
+            <option value="Baja">Baja</option>
+            <option value="Media">Media</option>
+            <option value="Alta">Alta</option>
+            <option value="Crítica">Crítica</option>
+        </select>
+
+        <button type="submit" class="btn">
+            Crear Servicio
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
