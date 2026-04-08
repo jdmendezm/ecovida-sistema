@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>EcoVida | Editar Servicio</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h2 class="logo">
+            EcoVida
+        </h2>
+
+        <div class="menu">
+
+            <a href="{{ url_for('index') }}">
+                <div class="menu-item">
+                    Dashboard
+                </div>
+            </a>
+
+            <a href="/listar_reportes">
+                <div class="menu-item">
+                    Reportes
+                </div>
+            </a>
+
+            <a href="/listar_sensores">
+                <div class="menu-item">
+                    Sensores
+                </div>
+            </a>
+
+            <a href="/listar_alertas">
+                <div class="menu-item">
+                    Alertas
+                </div>
+            </a>
+
+            <a href="/listar_configuraciones">
+                <div class="menu-item">
+                    Configuración
+                </div>
+            </a>
+
+            <a href="/listar_servicios">
+                <div class="menu-item active">
+                    Servicios TI
+                </div>
+            </a>
+
+            <a href="/logout">
+                <div class="menu-item logout">
+                    Cerrar Sesión
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- CONTENIDO -->
+
+    <div class="main">
+
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>
+                    Editar Servicio
+                </h1>
+
+                <span class="empresa">
+                    Actualización de información del servicio
+                </span>
+
+            </div>
+
+            <div>
+
+                <a href="{{ url_for('servicios.listar_servicios') }}"
+                   class="btn-secondary">
+
+                    Volver
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- FORMULARIO -->
+
+        <div class="card">
+
+            <form method="POST">
+
+                <label>
+                    Nombre del Servicio
+                </label>
+
+                <input
+                    type="text"
+                    name="nombre"
+                    value="{{ servicio.nombre }}"
+                    required
+                >
+
+                <label>
+                    Descripción
+                </label>
+
+                <textarea
+                    name="descripcion"
+                    rows="5"
+                    required
+                >{{ servicio.descripcion }}</textarea>
+
+                <label>
+                    Estado del Servicio
+                </label>
+
+                <select name="estado" required>
+
+                    <option value="Pendiente"
+                    {% if servicio.estado == "Pendiente" %}
+                    selected
+                    {% endif %}
+                    >
+                    Pendiente
+                    </option>
+
+                    <option value="En proceso"
+                    {% if servicio.estado == "En proceso" %}
+                    selected
+                    {% endif %}
+                    >
+                    En proceso
+                    </option>
+
+                    <option value="En mantenimiento"
+                    {% if servicio.estado == "En mantenimiento" %}
+                    selected
+                    {% endif %}
+                    >
+                    En mantenimiento
+                    </option>
+
+                    <option value="Finalizado"
+                    {% if servicio.estado == "Finalizado" %}
+                    selected
+                    {% endif %}
+                    >
+                    Finalizado
+                    </option>
+
+                </select>
+
+                <label>
+                    Prioridad
+                </label>
+
+                <select name="prioridad" required>
+
+                    <option value="Baja"
+                    {% if servicio.prioridad == "Baja" %}
+                    selected
+                    {% endif %}
+                    >
+                    Baja
+                    </option>
+
+                    <option value="Media"
+                    {% if servicio.prioridad == "Media" %}
+                    selected
+                    {% endif %}
+                    >
+                    Media
+                    </option>
+
+                    <option value="Alta"
+                    {% if servicio.prioridad == "Alta" %}
+                    selected
+                    {% endif %}
+                    >
+                    Alta
+                    </option>
+
+                    <option value="Crítica"
+                    {% if servicio.prioridad == "Crítica" %}
+                    selected
+                    {% endif %}
+                    >
+                    Crítica
+                    </option>
+
+                </select>
+
+                <br><br>
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                >
+                    Actualizar Servicio
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

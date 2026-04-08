@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>EcoVida | Login</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="auth-page">
+
+    <div class="card login-card">
+
+        <h2 class="auth-title">
+            Bienvenido a EcoVida
+        </h2>
+
+        <p class="auth-subtitle">
+            Sistema de Gestión Energética Inteligente
+        </p>
+
+        <form method="POST">
+
+            <input
+                type="email"
+                name="correo"
+                placeholder="Correo de la Empresa"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Contraseña"
+                required
+            >
+
+            <button
+                type="submit"
+                class="btn-auth"
+            >
+                Ingresar al Sistema
+            </button>
+
+        </form>
+
+        <p class="auth-link">
+
+            ¿No tienes cuenta?
+
+            <a href="/register">
+                Regístrate aquí
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

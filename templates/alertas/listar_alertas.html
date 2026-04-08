@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>EcoVida | Alertas</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <div class="sidebar">
+
+        <h2>EcoVida</h2>
+
+        <div class="menu">
+
+            <a href="/">
+                <div class="menu-item">
+                    Dashboard
+                </div>
+            </a>
+
+            <a href="{{ url_for('reportes.ver_reportes') }}">
+                <div class="menu-item">
+                    Reportes
+                </div>
+            </a>
+
+            <a href="{{ url_for('sensores.listar_sensores') }}">
+                <div class="menu-item">
+                    Sensores
+                </div>
+            </a>
+
+            <a href="{{ url_for('alertas.listar_alertas') }}">
+                <div class="menu-item active">
+                    Alertas
+                </div>
+            </a>
+
+            <a href="{{ url_for('configuraciones.configuracion') }}">
+                <div class="menu-item">
+                    Configuración
+                </div>
+            </a>
+
+            <a href="/listar_servicios">
+                <div class="menu-item">
+                    Servicios TI
+                </div>
+            </a>
+
+            <a href="/logout" style="color:#f87171;">
+                <div class="menu-item" style="margin-top:50px;">
+                    Cerrar Sesión
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="main">
+
+        <h1>Gestión de Alertas</h1>
+
+        <br>
+
+        <a href="/crear_alerta" class="btn">
+            Crear Alerta
+        </a>
+
+        <br><br>
+
+        <table>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Mensaje</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+
+            </tr>
+
+            {% for a in alertas %}
+
+            <tr>
+
+                <td>{{ a.id }}</td>
+                <td>{{ a.tipo }}</td>
+                <td>{{ a.mensaje }}</td>
+                <td>{{ a.fecha }}</td>
+
+                <td>
+
+                    <a href="/editar_alerta/{{ a.id }}">
+                        Editar
+                    </a>
+
+                    |
+
+                    <form method="POST"
+                          action="/eliminar_alerta/{{ a.id }}"
+                          style="display:inline;">
+
+                        <button type="submit">
+                            Eliminar
+                        </button>
+
+                    </form>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

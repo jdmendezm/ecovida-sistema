@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>EcoVida | Servicios TI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h2 class="logo">
+            EcoVida
+        </h2>
+
+        <div class="menu">
+
+            <a href="{{ url_for('index') }}">
+                <div class="menu-item">
+                    Dashboard
+                </div>
+            </a>
+
+            <a href="{{ url_for('reportes.ver_reportes') }}">
+                <div class="menu-item">
+                    Reportes
+                </div>
+            </a>
+
+            <a href="{{ url_for('sensores.listar_sensores') }}">
+                <div class="menu-item">
+                    Sensores
+                </div>
+            </a>
+
+            <a href="{{ url_for('alertas.listar_alertas') }}">
+                <div class="menu-item">
+                    Alertas
+                </div>
+            </a>
+
+            <a href="{{ url_for('configuraciones.configuracion') }}">
+                <div class="menu-item">
+                    Configuración
+                </div>
+            </a>
+
+            <a href="{{ url_for('servicios.listar_servicios') }}">
+                <div class="menu-item active">
+                    Servicios TI
+                </div>
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                <div class="menu-item logout">
+                    Cerrar Sesión
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- CONTENIDO -->
+
+    <div class="main">
+
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>
+                    Servicios TI
+                </h1>
+
+                <span class="empresa">
+                    Gestión de Servicios Tecnológicos
+                </span>
+
+            </div>
+
+            <div>
+
+                <a href="{{ url_for('servicios.crear_servicio') }}"
+                   class="btn-primary">
+                    + Nuevo Servicio
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- MENSAJES -->
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+
+                <div class="mensaje-exito">
+                    {{ message }}
+                </div>
+
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- TARJETA TABLA -->
+
+        <div class="card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for servicio in servicios %}
+
+                    <tr>
+
+                        <td>
+                            {{ servicio.id }}
+                        </td>
+
+                        <td>
+                            {{ servicio.nombre }}
+                        </td>
+
+                        <td>
+                            {{ servicio.descripcion }}
+                        </td>
+
+                        <td>
+                            {{ servicio.estado }}
+                        </td>
+
+                        <td>
+
+                            <a href="{{ url_for('servicios.editar_servicio', id=servicio.id) }}"
+                               class="btn-secondary">
+                                Editar
+                            </a>
+
+                            <a href="{{ url_for('servicios.eliminar_servicio', id=servicio.id) }}"
+                               class="btn-danger">
+                                Eliminar
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

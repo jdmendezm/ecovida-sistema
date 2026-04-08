@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>EcoVida | Registro</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="auth-page">
+
+    <div class="card auth-container">
+
+        <h2 class="auth-title">
+            Registro de Empresa
+        </h2>
+
+        <p class="auth-subtitle">
+            Crea tu cuenta para comenzar a gestionar el consumo energético
+        </p>
+
+        <form method="POST">
+
+            <input
+                type="text"
+                name="nombre"
+                placeholder="Nombre de la Empresa"
+                required
+            >
+
+            <input
+                type="email"
+                name="correo"
+                placeholder="Correo Electrónico"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Contraseña"
+                required
+            >
+
+            <button
+                type="submit"
+                class="btn-auth"
+            >
+                Crear Cuenta
+            </button>
+
+        </form>
+
+        <p class="auth-link">
+
+            ¿Ya tienes cuenta?
+
+            <a href="/login">
+                Inicia sesión
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

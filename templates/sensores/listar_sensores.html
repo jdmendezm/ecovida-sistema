@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>EcoVida | Sensores</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h2 class="logo">
+            EcoVida
+        </h2>
+
+        <div class="menu">
+
+            <a href="{{ url_for('index') }}">
+                <div class="menu-item">
+                    Dashboard
+                </div>
+            </a>
+
+            <a href="{{ url_for('reportes.ver_reportes') }}">
+                <div class="menu-item">
+                    Reportes
+                </div>
+            </a>
+
+            <a href="{{ url_for('sensores.listar_sensores') }}">
+                <div class="menu-item active">
+                    Sensores
+                </div>
+            </a>
+
+            <a href="{{ url_for('alertas.listar_alertas') }}">
+                <div class="menu-item">
+                    Alertas
+                </div>
+            </a>
+
+            <a href="{{ url_for('configuraciones.configuracion') }}">
+                <div class="menu-item">
+                    Configuración
+                </div>
+            </a>
+
+            <a href="{{ url_for('servicios.listar_servicios') }}">
+                <div class="menu-item">
+                    Servicios TI
+                </div>
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                <div class="menu-item logout">
+                    Cerrar Sesión
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- CONTENIDO -->
+
+    <div class="main">
+
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>
+                    Gestión de Sensores
+                </h1>
+
+                <span class="empresa">
+                    Monitoreo y administración de sensores
+                </span>
+
+            </div>
+
+            <div>
+
+                <a href="{{ url_for('sensores.crear_sensor') }}"
+                   class="btn-primary">
+
+                    + Crear Sensor
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- TABLA -->
+
+        <div class="card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Ubicación</th>
+                        <th>Acciones</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for s in sensores %}
+
+                    <tr>
+
+                        <td>{{ s.id }}</td>
+                        <td>{{ s.nombre }}</td>
+                        <td>{{ s.tipo }}</td>
+                        <td>{{ s.ubicacion }}</td>
+
+                        <td>
+
+                            <a href="{{ url_for('sensores.editar_sensor', id=s.id) }}"
+                               class="btn-secondary">
+                                Editar
+                            </a>
+
+                            <form method="POST"
+                                  action="{{ url_for('sensores.eliminar_sensor', id=s.id) }}"
+                                  style="display:inline;"
+                                  onsubmit="return confirm('¿Seguro que deseas eliminar este sensor?');">
+
+                                <button
+                                    type="submit"
+                                    class="btn-danger">
+
+                                    Eliminar
+
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

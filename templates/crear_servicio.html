@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>EcoVida | Crear Servicio TI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h2 class="logo">
+            EcoVida
+        </h2>
+
+        <div class="menu">
+
+            <a href="{{ url_for('index') }}">
+                <div class="menu-item">
+                    Dashboard
+                </div>
+            </a>
+
+            <a href="/listar_reportes">
+                <div class="menu-item">
+                    Reportes
+                </div>
+            </a>
+
+            <a href="/listar_sensores">
+                <div class="menu-item">
+                    Sensores
+                </div>
+            </a>
+
+            <a href="/listar_alertas">
+                <div class="menu-item">
+                    Alertas
+                </div>
+            </a>
+
+            <a href="/listar_configuraciones">
+                <div class="menu-item">
+                    Configuración
+                </div>
+            </a>
+
+            <a href="/listar_servicios">
+                <div class="menu-item active">
+                    Servicios TI
+                </div>
+            </a>
+
+            <a href="/logout">
+                <div class="menu-item logout">
+                    Cerrar Sesión
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- CONTENIDO -->
+
+    <div class="main">
+
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>
+                    Crear Servicio TI
+                </h1>
+
+                <span class="empresa">
+                    Registro de un nuevo servicio en el sistema
+                </span>
+
+            </div>
+
+            <div>
+
+                <a href="/listar_servicios"
+                   class="btn-secondary">
+
+                    Volver
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- FORMULARIO -->
+
+        <div class="card">
+
+            <form method="POST">
+
+                <label>
+                    Nombre del Servicio
+                </label>
+
+                <input
+                    type="text"
+                    name="nombre"
+                    placeholder="Ej: Mantenimiento de servidores"
+                    required
+                >
+
+                <label>
+                    Descripción del Servicio
+                </label>
+
+                <textarea
+                    name="descripcion"
+                    rows="5"
+                    placeholder="Describa el servicio que se va a registrar"
+                    required
+                ></textarea>
+
+                <label>
+                    Estado del Servicio
+                </label>
+
+                <select name="estado" required>
+
+                    <option value="">
+                        Seleccione estado
+                    </option>
+
+                    <option value="Pendiente">
+                        Pendiente
+                    </option>
+
+                    <option value="En proceso">
+                        En proceso
+                    </option>
+
+                    <option value="En mantenimiento">
+                        En mantenimiento
+                    </option>
+
+                    <option value="Finalizado">
+                        Finalizado
+                    </option>
+
+                </select>
+
+                <label>
+                    Prioridad del Servicio
+                </label>
+
+                <select name="prioridad" required>
+
+                    <option value="">
+                        Seleccione prioridad
+                    </option>
+
+                    <option value="Baja">
+                        Baja
+                    </option>
+
+                    <option value="Media">
+                        Media
+                    </option>
+
+                    <option value="Alta">
+                        Alta
+                    </option>
+
+                    <option value="Crítica">
+                        Crítica
+                    </option>
+
+                </select>
+
+                <br><br>
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                >
+                    Crear Servicio
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
